@@ -1,2 +1,2 @@
 # minesweeper
-MineSweeper written on React.js, front-end part.
+MineSweeper is fully written on React.js, front-end part.
