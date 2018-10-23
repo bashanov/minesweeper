@@ -56,12 +56,10 @@ class Board extends React.Component {
                 uCell.isOpened = true;
                 this.state.cellsOpened++;
                 if (uCell.isBomb) {
-                    uCell.animation = "animated flip bomb";
                     this.handleBomb(uCell);
                     uCell.label = emoji("bomb");
                 } else {
                     this.props.callbackAddScores(uCell.isNumber ? 2 : 1);
-                    uCell.animation = 'animated fadeIn faster';
                     if (uCell.isNumber) {
                         uCell.label = uCell.bombsAround;
                     } else {

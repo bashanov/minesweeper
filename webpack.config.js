@@ -1,5 +1,6 @@
 const path = require('path');
 const HWP = require('html-webpack-plugin');
+const project = require('./package');
 
 module.exports = {
     entry: path.join(__dirname, '/src/js/index.js'),
@@ -24,7 +25,7 @@ module.exports = {
             {
                 template: path.join(__dirname, '/src/index.html'),
                 title: 'Minesweeper',
-                version: '1.0.1'
+                version: project.version
             }
         )
     ]

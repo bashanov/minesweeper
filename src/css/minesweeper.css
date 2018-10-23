@@ -4,13 +4,17 @@
     float: left;
     font-size: 14px;
     font-weight: bold;
-    margin-right: -1px;
-    margin-top: -1px;
     padding: 0;
     text-align: center;
     line-height: 30px;
     height: 30px;
     width: 30px;
+    margin: 1px;
+}
+
+.miner .board .square.closed:hover {
+    background: rgb(232, 255, 230);
+    content: '?'
 }
 
 .miner .board .square.bomb {

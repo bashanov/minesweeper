@@ -1,4 +1,5 @@
 import React from 'react';
+let classNames = require('classnames');
 
 class Cell extends React.Component {
     handleClick() {
@@ -7,21 +8,17 @@ class Cell extends React.Component {
         }
     }
 
-    getClassName() {
-        let className = 'square closed';
-        if (this.props.data.isOpened) {
-            className = 'square';
-            if (this.props.data.isNumber) {
-                className = 'square number';
-            }
-        }
-        return className;
-    }
-
     render() {
+        let cellClass = classNames({
+            "square": true,
+            "closed": !this.props.data.isOpened,
+            "number": this.props.data.isNumber,
+            "animated flip bomb": this.props.data.isBomb && this.props.data.isOpened,
+            "animated fadeIn": !this.props.data.isBomb && this.props.data.isOpened,
+        });
         return (
             <div
-                className={this.getClassName() + ' ' + this.props.data.animation}
+                className={cellClass}
                 onClick={() => this.handleClick()}
                 onContextMenu={(e) => this.props.onContextMenu(e, this.props.data)}
             >

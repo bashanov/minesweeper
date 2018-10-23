@@ -3,32 +3,26 @@ import emoji from './utils/emoji';
 
 class GameInfo extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
-            info: [
-                {name: "Level", text: emoji("joystick"), item: "level", animate: ""},
-                {name: "Life", text: emoji("redHeart"), item: "life", animate: ""},
-                {name: "Bombs", text: emoji("bomb"), prop: "currentBoard", item: "bombsCount", animate: ""},
-                {name: "Opened", text: emoji("magnifier"), prop: "currentBoard", item: "cellsOpened", animate: ""},
-                {name: "Scores", text: emoji("trophy"), item: "scores", animate: ""},
-            ],
-            props: props
-        }
+            level: {name: "Level", emoji: emoji("joystick"), animated: true},
+            life: {name: "Life", emoji: emoji("redHeart"), animated: true},
+            bombsCount: {name: "Bombs", emoji: emoji("bomb")},
+            cellsOpened: {name: "Opened", emoji: emoji("magnifier")},
+            scores: {name: "Scores", emoji: emoji("trophy")}
+        };
     }
 
     render() {
         return (
             <div className="info">
                 {
-                    this.state.info.map((item) => {
-                        let p = this.props["game"];
-                        if (item["prop"] !== undefined) {
-                            p = p[item["prop"]];
-                        }
+                    Object.keys(this.state).map((k) => {
                         return (
-                            <div key={item.name}>
-                                <b title={item.name}>{item.text} {p[item.item]}</b>
-                                <p className="desc">{item.name}</p>
+                            <div key={this.state[k].name + '-' + this.props[k]}
+                                 className={this.state[k].animated !== undefined ? "animated flash" : ''}>
+                                <b title={this.state[k].name}>{this.state[k].emoji} {this.props[k]}</b>
+                                <p className="desc">{this.state[k].name}</p>
                             </div>
                         );
                     })

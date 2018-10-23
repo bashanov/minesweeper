@@ -23,8 +23,7 @@ class MineSweeperApp extends React.Component {
                     isOpened: false,
                     isFlagged: false,
                     isLife: false,
-                    label: '',
-                    animation: ''
+                    label: ''
                 }
             },
             currentBoard: {}
@@ -68,7 +67,11 @@ class MineSweeperApp extends React.Component {
         return (
             <div className="miner">
                 <GameInfo
-                    game={this.state}
+                    level={this.state.level}
+                    life={this.state.life}
+                    scores={this.state.scores}
+                    bombsCount={this.state.currentBoard.bombsCount}
+                    cellsOpened={this.state.currentBoard.cellsOpened}
                 />
                 <Board
                     settings={this.state.defaultBoard}
