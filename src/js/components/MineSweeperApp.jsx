@@ -69,7 +69,6 @@ class MineSweeperApp extends React.Component {
             <div className="miner">
                 <GameInfo
                     game={this.state}
-                    board={this.state.currentBoard}
                 />
                 <Board
                     settings={this.state.defaultBoard}

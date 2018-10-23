@@ -1,0 +1,64 @@
+.miner .board .square {
+    background: #f3ffe6;
+    border: 1px solid #999;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+}
+
+.miner .board .square.bomb {
+    background: #ff8c78;
+}
+
+.miner .board .square.number {
+    background: #fffed6;
+}
+
+.miner .board .square.life {
+    background: #ffd5c4;
+}
+
+.miner .board .square.closed {
+    background: #ddd;
+}
+
+.miner .board .square {
+    cursor: default;
+}
+
+.miner .board:not(.disabled) .square.closed:hover {
+    cursor: pointer;
+}
+
+.miner .board:not(.disabled) .square.life:hover {
+    cursor: pointer;
+}
+
+.miner .info {
+    margin-bottom: 10px;
+}
+
+.miner .info:hover {
+    cursor: default;
+}
+
+.miner .info > div {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.miner .info p.desc {
+    margin: 0;
+    font-size: .8em;
+}
+.miner-title span.version {
+    font-size: .5em;
+    color: grey;
+}

@@ -1,6 +1,10 @@
 import React from 'react';
 import Cell from './Cell.jsx';
 
+/**
+ * @property {function} this.props.onClick
+ * @property {function} this.props.onContextMenu
+ */
 class Matrix extends React.Component {
     render() {
         let rows = [];

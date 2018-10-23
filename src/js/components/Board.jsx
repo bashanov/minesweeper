@@ -1,13 +1,22 @@
 import React from 'react';
 import Matrix from "./Matrix.jsx";
+import generateMatrixMap from './utils/generateMatrixMap';
+import emoji from './utils/emoji';
 
+/**
+ * @property {function} this.prop.callbackHandleCurrentBoard
+ * @property {function} this.prop.callbackLevelUp
+ * @property {function} this.prop.callbackAddScores
+ * @property {function} this.prop.callbackRestartGameHandler
+ * @property {function} this.prop.callbackBombHandler
+ */
 class Board extends React.Component {
     constructor(props) {
         super();
-        this.state = this.getNewBoard(props);
+        this.state = Board.getNewBoard(props);
     }
 
-    getNewBoard(props) {
+    static getNewBoard(props) {
         let level = props.level;
         let width = props.settings.size + (level - 1) * 2;
         let difficult = props.settings.difficult + (level - 1) * 5;
@@ -49,7 +58,7 @@ class Board extends React.Component {
                 if (uCell.isBomb) {
                     uCell.animation = "animated flip bomb";
                     this.handleBomb(uCell);
-                    uCell.label = "\ud83d\udca3";
+                    uCell.label = emoji("bomb");
                 } else {
                     this.props.callbackAddScores(uCell.isNumber ? 2 : 1);
                     uCell.animation = 'animated fadeIn faster';
@@ -57,7 +66,7 @@ class Board extends React.Component {
                         uCell.label = uCell.bombsAround;
                     } else {
                         // Empty cell
-                        uCell.label = forceEmpty ? '' : this.getLabelForEmptyCell();
+                        uCell.label = forceEmpty ? '' : Board.getLabelForEmptyCell();
                         this.autoOpenClosestEmptyCells(x, y);
                     }
                     this.checkIsNeedLevelUp();
@@ -78,7 +87,7 @@ class Board extends React.Component {
                 }
                 uCell.isFlag = !cell.isFlag;
                 this.state.flagsCount += uCell.isFlag ? 1 : -1;
-                uCell.label = uCell.isFlag ? '\ud83d\udea9' : this.getLabelForEmptyCell();
+                uCell.label = uCell.isFlag ? emoji("flag") : Board.getLabelForEmptyCell();
                 this.setState({[cell]: uCell});
             }
             this.checkIsNeedLevelUp();
@@ -117,18 +126,18 @@ class Board extends React.Component {
         this.setState({settingFlags: !this.state.settingFlags});
     }
 
-    getLabelForEmptyCell() {
-        let emojis = [
-            '\ud83c\udf31',
-            '\ud83c\udf32',
-            '\ud83c\udf33',
-            '\ud83c\udf3e',
-            '\ud83d\udc1b',
-            '\ud83c\udf3c',
-            '\ud83c\udf3b'
+    static getLabelForEmptyCell() {
+        let arr = [
+            emoji("seedling"),
+            emoji("evergreenTree"),
+            emoji("deciduousTree"),
+            emoji("earOfRice"),
+            emoji("bug"),
+            emoji("blossom"),
+            emoji("sunflower")
         ];
         if (Math.random() < 0.12) {
-            return (emojis[Math.floor(Math.random() * emojis.length)]);
+            return (arr[Math.floor(Math.random() * arr.length)]);
         } else {
             return '';
         }
@@ -166,7 +175,8 @@ class Board extends React.Component {
                         style={{marginTop: "20px"}}
                         onClick={this.toggleSettingFlags.bind(this)}
                     >
-                        You {this.state.settingFlags ? "setting \ud83d\udea9" : "\ud83d\udd0d cells"}. Click
+                        You {this.state.settingFlags ? "setting " + emoji("flag") : emoji("magnifier") + " cells"}.
+                        Click
                         to {this.state.settingFlags ? "open cells" : "set flags"}.
                     </button>
                 </div>
@@ -183,76 +193,6 @@ class Board extends React.Component {
             </div>
         )
     }
-}
-
-function generateMatrixMap(width, height, bombsCount, cellTemplate) {
-    let isDebug = false;
-    let map = {};
-    let bombsLeft = bombsCount;
-    let cellsCount = width * height;
-    // Generate map
-    for (let y = 1; y <= height; y++) {
-        let mapRow = {};
-        for (let x = 1; x <= width; x++) {
-            let cell = {};
-            for (let key in cellTemplate) {
-                if (cellTemplate.hasOwnProperty(key)) {
-                    cell[key] = cellTemplate[key];
-                }
-            }
-            cell.x = x;
-            cell.y = y;
-            let isBomb = Math.floor((Math.random() * cellsCount) + 1);
-            if (isBomb < bombsCount && bombsLeft > 0) {
-                bombsLeft--;
-                cell.isBomb = true;
-                if (isDebug) {
-                    cell.label = 'B';
-                }
-            }
-            mapRow[x] = cell;
-        }
-        map[y] = mapRow;
-    }
-    // Add more bombs if needed
-    if (bombsLeft > 0) {
-        while (bombsLeft) {
-            let randX = Math.floor((Math.random() * width) + 1);
-            let randY = Math.floor((Math.random() * height) + 1);
-            if (map[randY][randX].isBomb === false) {
-                map[randY][randX].isBomb = true;
-                bombsLeft--;
-                if (isDebug) {
-                    map[randY][randX].label = 'B';
-                }
-            }
-        }
-    }
-    // Added numbers (count of bombs close to cell)
-    for (let y = 1; y <= height; y++) {
-        for (let x = 1; x <= width; x++) {
-            if (map[y][x].isBomb === false) {
-                let counter = 0;
-                for (let y2 = -1; y2 <= 1; y2++) {
-                    for (let x2 = -1; x2 <= 1; x2++) {
-                        if (y2 !== x2 !== 0) {
-                            if (map[y + y2] !== undefined && map[y + y2][x + x2] !== undefined && map[y + y2][x + x2].isBomb === true) {
-                                counter++;
-                            }
-                        }
-                    }
-                }
-                if (counter > 0) {
-                    map[y][x].bombsAround = counter;
-                    map[y][x].isNumber = true;
-                    if (isDebug) {
-                        map[y][x].label = counter;
-                    }
-                }
-            }
-        }
-    }
-    return map;
 }
 
 export default Board;

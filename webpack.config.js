@@ -24,7 +24,7 @@ module.exports = {
             {
                 template: path.join(__dirname, '/src/index.html'),
                 title: 'Minesweeper',
-                version: '1.0.0'
+                version: '1.0.1'
             }
         )
     ]
