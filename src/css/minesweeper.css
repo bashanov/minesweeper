@@ -1,7 +1,11 @@
+.miner .board .line {
+    white-space: nowrap;
+}
+
 .miner .board .square {
-    background: #f3ffe6;
+    background: #f6ffed;
     border: 1px solid #999;
-    float: left;
+    display: inline-block;
     font-size: 14px;
     font-weight: bold;
     padding: 0;
@@ -10,27 +14,27 @@
     height: 30px;
     width: 30px;
     margin: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    vertical-align: top;
 }
 
 .miner .board .square.closed:hover {
-    background: rgb(232, 255, 230);
+    background: #ffd1a4;
     content: '?'
 }
 
 .miner .board .square.bomb {
-    background: #ff8c78;
+    background: #ffa08a;
 }
 
 .miner .board .square.number {
-    background: #fffed6;
-}
-
-.miner .board .square.life {
-    background: #ffd5c4;
+    background: #e3f3ff;
 }
 
 .miner .board .square.closed {
-    background: #ddd;
+    background: #ddd5cf;
 }
 
 .miner .board .square {
@@ -47,6 +51,7 @@
 
 .miner .info {
     margin-bottom: 10px;
+    white-space: nowrap;
 }
 
 .miner .info:hover {
@@ -62,7 +67,12 @@
     margin: 0;
     font-size: .8em;
 }
+
 .miner-title span.version {
     font-size: .5em;
     color: grey;
+}
+
+.miner-title {
+    white-space: nowrap;
 }

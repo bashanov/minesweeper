@@ -18,7 +18,7 @@ class Matrix extends React.Component {
                     onContextMenu={this.props.onContextMenu}
                 />)
             }
-            rows.push(<div key={"row-" + y} className="clearfix">{cells}</div>);
+            rows.push(<div className="line" key={"row-" + y}>{cells}</div>);
         }
         return <div className={this.props.active ? "board" : "board disabled"}>{rows}</div>;
     }
