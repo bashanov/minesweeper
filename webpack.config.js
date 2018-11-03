@@ -1,12 +1,14 @@
 const path = require('path');
-const HWP = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const project = require('./package');
+const outputDirectory = 'dist';
 
 module.exports = {
     entry: path.join(__dirname, '/src/js/index.js'),
     output: {
         filename: 'build.js',
-        path: path.join(__dirname, '/dist')
+        path: path.join(__dirname, outputDirectory)
     },
     module: {
         rules: [{
@@ -21,7 +23,8 @@ module.exports = {
     }
     ,
     plugins: [
-        new HWP(
+        new CleanWebpackPlugin([outputDirectory]),
+        new HtmlWebpackPlugin(
             {
                 template: path.join(__dirname, '/src/index.html'),
                 title: 'MineSweeper',
