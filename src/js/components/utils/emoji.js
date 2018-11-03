@@ -13,6 +13,7 @@ export default function emoji(name) {
         bug: "\ud83d\udc1b",
         blossom: "\ud83c\udf3c",
         sunflower: "\ud83c\udf3b",
+        pray: "\ud83d\ude4f\ud83c\udffb"
     };
     return list[name] === undefined ? name : list[name];
 }

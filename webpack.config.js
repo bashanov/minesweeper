@@ -24,7 +24,7 @@ module.exports = {
         new HWP(
             {
                 template: path.join(__dirname, '/src/index.html'),
-                title: 'Minesweeper',
+                title: 'MineSweeper',
                 version: project.version
             }
         )

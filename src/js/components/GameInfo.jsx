@@ -7,7 +7,7 @@ class GameInfo extends React.Component {
         this.state = {
             level: {name: "Level", emoji: emoji("joystick"), animated: true},
             life: {name: "Life", emoji: emoji("redHeart"), animated: true},
-            bombsCount: {name: "Bombs", emoji: emoji("bomb")},
+            bombsCount: {name: "Bombs", emoji: emoji("bomb"), animated: true},
             cellsOpened: {name: "Opened", emoji: emoji("magnifier")},
             scores: {name: "Scores", emoji: emoji("trophy")}
         };

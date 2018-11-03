@@ -50,7 +50,8 @@ class MineSweeperApp extends React.Component {
     levelUpHandler() {
         this.setState({
             level: this.state.level + 1,
-            scores: this.state.scores + (2 * this.state.level * this.state.level * 10)
+            scores: this.state.scores + (2 * this.state.level * this.state.level * 10),
+            life: this.state.life + 1
         });
         this.refreshGame();
     }
@@ -71,7 +72,7 @@ class MineSweeperApp extends React.Component {
                     life={this.state.life}
                     scores={this.state.scores}
                     bombsCount={this.state.currentBoard.bombsCount}
-                    cellsOpened={this.state.currentBoard.cellsOpened}
+                    cellsOpened={Math.floor(this.state.currentBoard.cellsOpened * 100 / this.state.currentBoard.cellsCount) + "%"}
                 />
                 <Board
                     settings={this.state.defaultBoard}
