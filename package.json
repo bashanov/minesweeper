@@ -1,6 +1,6 @@
 {
   "name": "minesweeper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "MineSweeper is a clone of one of the most popular classic games fully written on react.js",
   "main": "index.js",
   "scripts": {
