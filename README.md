@@ -5,11 +5,15 @@ Minesweeper is a clone of one of the most popular classic games fully written on
 
 ![Image](src/img/game.jpg)
 
-#### How to use?
-1. Clone repo and run `yarn install` (or `npm install`) to download dependencies
-2. To build the project run `npm run build`, to run webpack hot web server run `npm run start`
+#### I'd like to play, how to use?
+* Manual
+1. Clone repo and run `yarn install` (or `npm install`) to download dependencies.
+2. Run `npm run build` to build the game. The result files will be located in `/dist` directory in the root.
+3. Go to the project root, run webpack hot web server `npm run start` or start express nodejs server `node server.js`
+* Docker
+1. Clone repo and be sure you have docker (18.02.0+) and docker-compose packages.
+2. Build and run docker-compose
 
-The result of your build will be located in `/dist` directory in the root.
 
 #### Notice
 Game uses
