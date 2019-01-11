@@ -2,7 +2,7 @@ FROM node:10-alpine
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock server.js webpack.config.js .babelrc ./
+COPY package.json server.js webpack.config.js .babelrc ./
 COPY src/ ./src/
 
 RUN yarn install; \
